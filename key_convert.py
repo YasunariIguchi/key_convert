@@ -18,7 +18,7 @@ if key_new not in sounds :
     exit()
 
 diff = sounds.index(key_new) - sounds.index(key_now)
-print('diff=',diff)
+#print('diff=',diff)
 
 with open(input_data, mode="r", encoding="utf-8") as rf:
     reader = csv.reader(rf)
@@ -27,7 +27,7 @@ with open(input_data, mode="r", encoding="utf-8") as rf:
         for line in reader:
             new_line=[]
             for i in range(len(line)):
-                print('line[',i,']=',line[i])
+                #print('line[',i,']=',line[i])
                 if (len(line[i])>1) and (line[i][1] == '#'):
                     first = line[i][:2]
                     latter = line[i][2:]

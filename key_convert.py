@@ -29,16 +29,21 @@ with open(input_data, mode="r", encoding="utf-8") as rf:#入力csvデータを�
         for line in reader:#入力csvデータを一行読む
             new_line=[]#変換後のデータを格納
             for i in range(len(line)):#一行を更に一つずつ読む
-                #print('line[',i,']=',line[i])
-                if (len(line[i])>1) and (line[i][1] == '#'):#シャープがあるか判別
-                    first = line[i][:2]
-                    latter = line[i][2:]
+                if(line[i][0][0]=='♪'):
+                    new_line=line
                 else:
-                    first = line[i][:1]
-                    latter = line[i][1:]
-                new_line.append(sounds[(sounds.index(first) + diff)%12]+latter)#新しいキーでのコードを作成
+                    #print('line[',i,']=',line[i])
+                    if (len(line[i])>1) and (line[i][1] == '#'):#シャープがあるか判別
+                        first = line[i][:2]
+                        latter = line[i][2:]
+                    else:
+                        first = line[i][:1]
+                        latter = line[i][1:]
+                    new_line.append(sounds[(sounds.index(first) + diff)%12]+latter)#新しいキーでのコードを作成
             writer.writerow(new_line)#新しいコードを書き込み
-print('capo: ',-diff%12)
+        writer.writerow(['(capo:'+str(-diff%12)+')'])
+print('(capo:'+str(-diff%12)+')')
+#writer.writerow(['capo: ',-diff%12])
 
 
 
